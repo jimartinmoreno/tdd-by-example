@@ -19,13 +19,13 @@
 
     <developers>
         <developer>
-            <id>jt</id>
-            <name>John Thompson</name>
-            <email>john@springframework.guru</email>
+            <id>jimm</id>
+            <name>Nacho Martin</name>
+            <email>joseignacio.martinmoreno@gmail.com</email>
         </developer>
     </developers>
 
-    <inceptionYear>2018</inceptionYear>
+    <inceptionYear>2021</inceptionYear>
 
     <licenses>
         <license>
@@ -37,10 +37,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <junit-platform.version>5.3.1</junit-platform.version>
+        <junit-platform.version>5.8.1</junit-platform.version>
     </properties>
 
     <dependencies>
