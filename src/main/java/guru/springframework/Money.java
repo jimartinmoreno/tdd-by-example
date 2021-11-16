@@ -2,15 +2,7 @@ package guru.springframework;
 
 import java.util.Objects;
 
-public class Money implements Expression {
-
-    protected final double amount;
-    protected final Currency currency;
-
-    Money(double amount, Currency currency) {
-        this.amount = amount;
-        this.currency = currency;
-    }
+public record Money(double amount, Currency currency) implements Expression {
 
     public static Money dollar(int amount){
         return new Money(amount, Currency.USD);
@@ -18,10 +10,6 @@ public class Money implements Expression {
 
     public static Money franc(int amount){
         return new Money(amount, Currency.CHF);
-    }
-
-    public Currency currency(){
-        return this.currency;
     }
 
     @Override
@@ -36,7 +24,7 @@ public class Money implements Expression {
     }
 
     @Override
-    public Expression plus(Expression addend) {
+    public Sum plus(Expression addend) {
         return new Sum(this, addend);
     }
 

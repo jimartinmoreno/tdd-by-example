@@ -47,16 +47,16 @@ class MoneyTest {
     @Test
     void testSimpleAddition() {
         Bank bank = new Bank();
-        Money five = Money.dollar(5);
-        Expression sum = five.plus(five);
+        Expression five = Money.dollar(5);
+        Sum sum = five.plus(five);
         assertEquals(Money.dollar(10), bank.reduce(sum, Currency.USD));
     }
 
     @Test
     void testPlusReturnsSum() {
-        Money five = Money.dollar(5);
-        Money four =  Money.dollar(4);
-        Sum sum = (Sum) five.plus(four);
+        Expression five = Money.dollar(5);
+        Expression four =  Money.dollar(4);
+        Sum sum = five.plus(four);
         assertEquals(five, sum.augmend());
         assertEquals(four, sum.addmend());
         assertEquals(Money.dollar(9), new Bank().reduce(sum, Currency.USD));
@@ -65,7 +65,7 @@ class MoneyTest {
     @Test
     void testReduceSum() {
         Bank bank = new Bank();
-        Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
+        Sum sum = new Sum(Money.dollar(3), Money.dollar(4));
         Money result = bank.reduce(sum, Currency.USD);
         assertEquals(Money.dollar(7), result);
     }
@@ -102,7 +102,7 @@ class MoneyTest {
 
         Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.franc(10);
-        Expression sum = new Sum(fiveBucks, tenFrancs);
+        Sum sum = new Sum(fiveBucks, tenFrancs);
 
         Money result = bank.reduce(sum, Currency.USD);
         assertEquals(result, Money.dollar(10));
@@ -116,7 +116,7 @@ class MoneyTest {
 
         Expression fiveBucks = Money.dollar(5);
         Expression tenFrancs = Money.franc(10);
-        Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
+        Sum sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks);
 
         Money result = bank.reduce(sum, Currency.USD);
         assertEquals(Money.dollar(15), result);
@@ -132,6 +132,7 @@ class MoneyTest {
         Expression tenFrancs = Money.franc(10);
         Bank bank = new Bank();
         bank.addRate(Currency.CHF, Currency.USD, 2);
+
         Expression sum = new Sum(fiveBucks, tenFrancs).times(2);
         Money result = bank.reduce(sum, Currency.USD);
         assertEquals(Money.dollar(20), result);
